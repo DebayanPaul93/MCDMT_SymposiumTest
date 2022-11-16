@@ -51,7 +51,7 @@ def trh_output():
 
 	#check if already file exists (Simulation is done)
 	if (Path('Temperature.jpg').is_file() is False):        
-		T Plot creater
+		#T Plot creater
 		fig1 = plt.figure(figsize = (24,12))
 		axes = fig1.add_subplot(111)
 		axes.plot(df_transposed_zone1.index, df_transposed_zone1['Zone 1 T'], color="green", linestyle='solid', label='')
@@ -100,7 +100,7 @@ def trh_output():
 
 	#check if already file exists (Simulation is done)
 	if (Path('RH.jpg').is_file() is False):  
-		RH Plot creater
+		#RH Plot creater
 		fig2 = plt.figure(figsize = (24,12))
 		axes1 = fig2.add_subplot(111)
 		axes1.plot(df_transposed_zone1.index, df_transposed_zone1['Zone 1 RH'], color="green", linestyle='solid', label='')
