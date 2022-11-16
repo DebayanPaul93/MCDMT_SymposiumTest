@@ -32,7 +32,7 @@ def trh_output():
 	list_hourlyoutput=[]
 
 	#read eso file and convert to dataframe object
-	dd, data = esr.read(r'C:\Users\20210156\OneDrive - TU Eindhoven\Monthly\Streamlit Webapp\3_zones.eso')
+	dd, data = esr.read(r'3_zones.eso')
 	for var in list_variables:
 	    for i in range(3):
 	        frequency, key, variable = dd.find_variable(var)[i] 
