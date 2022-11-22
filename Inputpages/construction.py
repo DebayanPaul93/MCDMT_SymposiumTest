@@ -38,8 +38,3 @@ def construction_input():
 		col8, col9, col10 = st.columns(3)
 		with col8:
 			wallrc = st.number_input("Enter Infiltration Rate (ACH)",min_value=0.2,max_value=2.0,step=0.2)
-
-
-	for i in range (5):
-		st.write("")
-	st.markdown("### Confirm Rc vale ranges with Mahsa!!!")
