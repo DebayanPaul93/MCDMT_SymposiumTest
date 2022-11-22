@@ -3,8 +3,8 @@ import streamlit as st, sys
 import pandas as pd
 from datetime import datetime
 from PIL import Image
-# import tkinter as tk
-# from tkinter import filedialog
+import tkinter as tk
+from tkinter import filedialog
 
 
 #Remove Watermark & Styling
@@ -47,7 +47,7 @@ import Inputpages.construction
 import Inputpages.setpoint
 import Inputpages.hvac
 import Inputpages.pv
-import Inputpages.confirm
+import Inputpages.result
 
 ###Adding multiple input pages
 
@@ -86,25 +86,25 @@ def input_home_page():
         email = st.text_input("Enter your e-mail id")
 
     st.write("Report Date & Time: {} {}".format(date_report,time_report))
-#     st.markdown('#### Please select the Folder of Simulation Files in your System')
-#     # Directory picker
-#     root = tk.Tk()
-#     root.withdraw()
+    st.markdown('#### Please select the Folder of Simulation Files in your System')
+    # Directory picker
+    root = tk.Tk()
+    root.withdraw()
 
-#     # Make folder picker dialog appear on top of other windows
-#     root.wm_attributes('-topmost', 1)
+    # Make folder picker dialog appear on top of other windows
+    root.wm_attributes('-topmost', 1)
 
-#     # Folder picker button
-#     source_folderlocation_string, modified_folderlocation_string = "",""
+    # Folder picker button
+    source_folderlocation_string, modified_folderlocation_string = "",""
 
-#     clicked = st.button('Select Folder')
-#     if clicked:
-#         source_folderlocation_string = filedialog.askdirectory(master=root)                               #for reading folder from user system
-#         if(source_folderlocation_string != ""):
-#             st.text_input('You Selected Folder:', source_folderlocation_string)
-#             modified_folderlocation_string = source_folderlocation_string.replace("/", "\\") 
-#         else:
-#             st.error("Please Select the Folder") 
+    clicked = st.button('Select Folder')
+    if clicked:
+        source_folderlocation_string = filedialog.askdirectory(master=root)                               #for reading folder from user system
+        if(source_folderlocation_string != ""):
+            st.text_input('You Selected Folder:', source_folderlocation_string)
+            modified_folderlocation_string = source_folderlocation_string.replace("/", "\\") 
+        else:
+            st.error("Please Select the Folder") 
 
                                             
 
@@ -129,23 +129,36 @@ def hvac_page():
 def pv_page():
     Inputpages.pv.pv_input()
 
-def confirm_page():
-    Inputpages.confirm.confirm_input()
+alloptionselcheck = Inputpages.pv.inputconfirm
+if(alloptionselcheck):
+    def result_page():
+        Inputpages.result.resultmenu()
+
+    inputpage_names_to_funcs = {
+        "🏠   Home": input_home_page,
+        "🌦   Weather Info": weather_page,
+        "📜   Collection Chemical Properties": paper_page,
+        "📏   Repository Sizing": reposize_page,
+        "🧱   Building Construction Properties": construction_page,
+        "🌡️    Annual Setpoints Limit": setpoint_page,
+        "🔥❄️ HVAC Systems": hvac_page,
+        "☀️🔋 Rooftop PV Info": pv_page,
+        "🔚   Result": result_page,
+    }
 
 
-inputpage_names_to_funcs = {
-    "🏠   Home": input_home_page,
-    "🌦   Weather Info": weather_page,
-    "📜   Collection Chemical Properties": paper_page,
-    "📏   Repository Sizing": reposize_page,
-    "🧱   Building Construction Properties": construction_page,
-    "🌡️    Annual Setpoints Limit": setpoint_page,
-    "🔥❄️ HVAC Systems": hvac_page,
-    "☀️🔋 Rooftop PV Info": pv_page,
-    "🔚   Submit": confirm_page,
+else:
+    inputpage_names_to_funcs = {
+        "🏠   Home": input_home_page,
+        "🌦   Weather Info": weather_page,
+        "📜   Collection Chemical Properties": paper_page,
+        "📏   Repository Sizing": reposize_page,
+        "🧱   Building Construction Properties": construction_page,
+        "🌡️    Annual Setpoints Limit": setpoint_page,
+        "🔥❄️ HVAC Systems": hvac_page,
+        "☀️🔋 Rooftop PV Info": pv_page,
+    }
 
-}
-
-selected_page = st.sidebar.selectbox("Select Design Input", inputpage_names_to_funcs.keys())
+selected_page = st.sidebar.selectbox("", inputpage_names_to_funcs.keys(),key='Page')
 inputpage_names_to_funcs[selected_page]()
 
