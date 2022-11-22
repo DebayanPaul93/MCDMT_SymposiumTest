@@ -17,8 +17,9 @@ plt.rcParams['axes.linewidth'] = 3.0
 plt.rcParams['lines.linewidth'] = 4
 
 def pv_output():
-	original_title = '<p style="font-family:Sans serif; color:cyan; font-size: 30px;"><b>Rooftop Photovoltaic Power Generation</b></p>'
-	st.markdown(original_title, unsafe_allow_html=True)
+	# original_title = '<p style="font-family:Sans serif; color:cyan; font-size: 30px;"><b>Rooftop Photovoltaic Power Generation</b></p>'
+	# st.markdown(original_title, unsafe_allow_html=True)
+	expander = st.expander("Rooftop Photovoltaic Power Generation", expanded=False)
 
 	if (Path('PVMonthlyProduction.jpg').is_file() is False):
 
@@ -58,10 +59,12 @@ def pv_output():
 
 	#plot through streamlit
 	pvimg = Image.open("PVMonthlyProduction.jpg")
-	st.image(pvimg, width=None)
+	#st.image(pvimg, width=None)
+	expander.image(pvimg)
 
-	original_title = '<p style="font-family:Sans serif; color:cyan; font-size: 30px;"><b>On-site Generation vs. Utility Demand Comparison</b></p>'
-	st.markdown(original_title, unsafe_allow_html=True)
+	# original_title = '<p style="font-family:Sans serif; color:cyan; font-size: 30px;"><b>On-site Generation vs. Utility Demand Comparison</b></p>'
+	# st.markdown(original_title, unsafe_allow_html=True)
+	expander = st.expander("On-site Generation vs. Utility Demand Comparison", expanded=False)
 
 	if (Path('OEMOEF.jpg').is_file() is False):
 
@@ -130,8 +133,10 @@ def pv_output():
 
 		plt.text(0.16, 0.24, 'Annual OEF (%)',verticalalignment='bottom', horizontalalignment='right',transform=host.transAxes,color='red', fontsize=14)
 		plt.axhline(y=annual_oef, color='r')
-		plt.savefig('OEMOEF.jpg')
+		plt.savefig('OEMOEF.jpg', bbox_inches='tight', pad_inches=0.1)
 
 	#plot through streamlit
 	oemoefimg = Image.open("OEMOEF.jpg")
-	st.image(oemoefimg, width=None)
+	#st.image(oemoefimg, width=None)
+	expander.image(oemoefimg)
+
