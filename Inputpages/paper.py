@@ -15,9 +15,9 @@ def paper_input():
 			#if(objectno == 2):
 			colc, cold, cole = st.columns(3)
 			with colc:
-				pH = st.slider("Select pH level",min_value=3,max_value=9,step=1,key='ph{}'.format(counter+1))
+				pH = st.slider("Select pH level",min_value=3,max_value=9,value=8,step=1,key='ph{}'.format(counter+1))
 			with cold:
-				int_dp = st.slider("Select Initial DP",min_value=500,max_value=2500,step=50,key='dp{}'.format(counter+1))
+				int_dp = st.slider("Select Initial DP",min_value=500,max_value=2500,value=1200,step=50,key='dp{}'.format(counter+1))
 			with cole:
 				col_perct = st.slider("Select % of Object {} in Collection".format(counter+1),min_value=10,max_value=100,step=10,key='percent{}'.format(counter+1))
 
@@ -29,9 +29,9 @@ def paper_input():
 			st.markdown("#### Object Chemical Properties")
 			cola, colb = st.columns(2)
 			with cola:
-				pH = st.slider("Select pH level",min_value=3,max_value=9,step=1,key='ph1')
+				pH = st.slider("Select pH level",min_value=3,max_value=9,value=8,step=1,key='ph1')
 			with colb:
-				int_dp = st.slider("Select Initial DP",min_value=500,max_value=2500,step=50,key='dp1')
+				int_dp = st.slider("Select Initial DP",min_value=500,max_value=2500,value=1200,step=50,key='dp1')
 			col_perct = 100
 			list_pH.append(pH)
 			list_intdp.append(int_dp)
