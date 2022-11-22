@@ -204,7 +204,7 @@ def trh_output():
 		expander2 = st.expander("Relative Humidity", expanded=False)
 		expander2.image(rhimg)
 
-	expander = st.expander("Yearly Number of Hours above Annual Average Temperature Setpoint", expanded=False)
+	expander = st.expander("Yearly Percentage of Hours above Annual Average Temperature Setpoint", expanded=False)
 	expander.write("")
 
 	if(no_of_zones == 1):
@@ -217,7 +217,7 @@ def trh_output():
 		with col3:
 			st.write("")
 
-		expander = st.expander("Yearly Number of Hours above Annual Average Relative Humidity Setpoint", expanded=False)
+		expander = st.expander("Yearly Percentage of Hours above Annual Average Relative Humidity Setpoint", expanded=False)
 		expander.write("")
 
 		col1, col2, col3 = st.columns(3)
