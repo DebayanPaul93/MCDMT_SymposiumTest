@@ -25,7 +25,3 @@ def size_input():
 		repo_width = st.number_input("Enter Width of Repository (in m)",min_value=10,max_value=30,step=2,key='width')
 	with col7:
 		repo_floorheight = st.number_input("Enter Height of each Floor (in m)",min_value=3.5,max_value=5.5,step=0.5,key='height',format="%.1f")
-
-	for i in range (5):
-		st.write("")
-	st.markdown("### Confirm the ranges of dimension and paper size!!!")
