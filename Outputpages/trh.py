@@ -32,7 +32,7 @@ def trh_output():
 	list_hourlyoutput=[]
 
 	#read eso file and convert to dataframe object
-	dd, data = esr.read(r'3_zones.eso')
+	dd, data = esr.read(r'3_zonesnew.eso')
 	for var in list_variables:
 	    for i in range(3):
 	        frequency, key, variable = dd.find_variable(var)[i] 
@@ -129,7 +129,7 @@ def trh_output():
 		plt.ylim(30,70)
 		plt.text(0.44, 0.08, 'Lower RH Limit',verticalalignment='bottom', horizontalalignment='right',transform=axes1.transAxes, color='red', fontsize=25)
 		plt.text(0.25, 0.78, 'Upper RH Limit',verticalalignment='bottom', horizontalalignment='right',transform=axes1.transAxes, color='red', fontsize=25)
-		plt.text(0.38, 0.54, 'Working RH Limit',verticalalignment='bottom', horizontalalignment='right',transform=axes1.transAxes, color='green', fontsize=25)
+		plt.text(0.65, 0.54, 'Working RH Limit',verticalalignment='bottom', horizontalalignment='right',transform=axes1.transAxes, color='green', fontsize=25)
 		plt.axhline(y=35, color='r', linestyle='--')
 		plt.axhline(y=60, color='r', linestyle='--')
 		plt.axhline(y=50, color='green', linestyle='--')
