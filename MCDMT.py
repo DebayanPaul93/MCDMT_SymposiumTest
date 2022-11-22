@@ -78,10 +78,10 @@ def input_home_page():
     with col6:
         if (date_report == datetime.today().strftime('%d %B, %Y')): 
             time = st.time_input("Enter Time", value= datetime.now(), disabled=True)      
-            time_report = time.strftime("%H:%M %p")
+            time_report = time.strftime("%H:%M %p %Z")
         else:
             time = st.time_input("Enter Time", value= datetime.now(), disabled=False)      
-            time_report = time.strftime("%H:%M %p")
+            time_report = time.strftime("%H:%M %p %Z")
     with col7:
         email = st.text_input("Enter your e-mail id")
 
