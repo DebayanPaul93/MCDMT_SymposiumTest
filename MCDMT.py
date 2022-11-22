@@ -3,7 +3,7 @@ import streamlit as st, sys
 import pandas as pd
 from datetime import datetime
 from PIL import Image
-import tkinter as tk
+#import tkinter as tk
 from tkinter import filedialog
 
 
@@ -86,25 +86,25 @@ def input_home_page():
         email = st.text_input("Enter your e-mail id")
 
     st.write("Report Date & Time: {} {}".format(date_report,time_report))
-    st.markdown('#### Please select the Folder of Simulation Files in your System')
-    # Directory picker
-    root = tk.Tk()
-    root.withdraw()
+#     st.markdown('#### Please select the Folder of Simulation Files in your System')
+#     # Directory picker
+#     root = tk.Tk()
+#     root.withdraw()
 
-    # Make folder picker dialog appear on top of other windows
-    root.wm_attributes('-topmost', 1)
+#     # Make folder picker dialog appear on top of other windows
+#     root.wm_attributes('-topmost', 1)
 
-    # Folder picker button
-    source_folderlocation_string, modified_folderlocation_string = "",""
+#     # Folder picker button
+#     source_folderlocation_string, modified_folderlocation_string = "",""
 
-    clicked = st.button('Select Folder')
-    if clicked:
-        source_folderlocation_string = filedialog.askdirectory(master=root)                               #for reading folder from user system
-        if(source_folderlocation_string != ""):
-            st.text_input('You Selected Folder:', source_folderlocation_string)
-            modified_folderlocation_string = source_folderlocation_string.replace("/", "\\") 
-        else:
-            st.error("Please Select the Folder") 
+#     clicked = st.button('Select Folder')
+#     if clicked:
+#         source_folderlocation_string = filedialog.askdirectory(master=root)                               #for reading folder from user system
+#         if(source_folderlocation_string != ""):
+#             st.text_input('You Selected Folder:', source_folderlocation_string)
+#             modified_folderlocation_string = source_folderlocation_string.replace("/", "\\") 
+#         else:
+#             st.error("Please Select the Folder") 
 
                                             
 
