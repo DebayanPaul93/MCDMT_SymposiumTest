@@ -98,12 +98,12 @@ def trh_output():
 		elif(no_of_zones == 2):
 			axes.plot(df_transposed_zone1.index, df_transposed_zone1['Zone 1 T'], color="green", linestyle='solid', label='')
 			axes.plot(df_transposed_zone2.index, df_transposed_zone2['Zone 2 T'], color="orange", linestyle='dashed', label='')
-			axes.legend(['Ground Floor', '$2^{nd}$ Floor'], fontsize=24, frameon=False)
+			axes.legend(['Ground Floor', 'Middle Floor'], fontsize=24, frameon=False)
 		else:
 			axes.plot(df_transposed_zone1.index, df_transposed_zone1['Zone 1 T'], color="green", linestyle='solid', label='')
 			axes.plot(df_transposed_zone2.index, df_transposed_zone2['Zone 2 T'], color="orange", linestyle='dashed', label='')
 			axes.plot(df_transposed_zone3.index, df_transposed_zone3['Zone 3 T'], color="blue", linestyle='dotted', label='')
-			axes.legend(['Ground Floor', '$2^{nd}$ Floor', '$3^{rd}$ Floor'], fontsize=24, frameon=False)
+			axes.legend(['Ground Floor', 'Middle Floor', 'Top Floor'], fontsize=24, frameon=False)
 
 		axes.grid(axis = 'y')
 		axes.grid(axis = 'x')
@@ -161,7 +161,7 @@ def trh_output():
 			axes1.plot(df_transposed_zone1.index, df_transposed_zone1['Zone 1 RH'], color="green", linestyle='solid', label='')
 			axes1.plot(df_transposed_zone2.index, df_transposed_zone2['Zone 2 RH'], color="orange", linestyle='dashed', label='')
 			axes1.plot(df_transposed_zone3.index, df_transposed_zone3['Zone 3 RH'], color="blue", linestyle='dotted', label='')
-			axes1.legend(['Ground Floor', '$2^{nd}$ Floor', '$3^{rd}$ Floor'], fontsize=24, frameon=False)
+			axes1.legend(['Ground Floor', 'Middle Floor', 'Top Floor'], fontsize=24, frameon=False)
 		
 		axes1.grid(axis = 'y')
 		axes1.grid(axis = 'x')
@@ -235,7 +235,7 @@ def trh_output():
 			expander1 = st.expander("Ground Floor", expanded=False)
 			expander1.metric(label="", value=str(list_highTavg[0])+ "%")
 		with col2:
-			expander2 = st.expander("2nd Floor", expanded=False)
+			expander2 = st.expander("Middle Floor", expanded=False)
 			deltaT1 = list_highTavg[1] - list_highTavg[0]
 			deltaT1 = round(deltaT1,1)
 			if(deltaT1<0):
@@ -251,7 +251,7 @@ def trh_output():
 			expander1 = st.expander("Ground Floor", expanded=False)
 			expander1.metric(label="", value=str(list_highRHavg[0])+ "%")
 		with col2:
-			expander2 = st.expander("2nd Floor", expanded=False)
+			expander2 = st.expander("Middle Floor", expanded=False)
 			deltaRH1 = list_highRHavg[1] - list_highRHavg[0]
 			deltaRH1 = round(deltaRH1,1)
 			if(deltaRH1<0):
@@ -265,7 +265,7 @@ def trh_output():
 			expander1 = st.expander("Ground Floor", expanded=False)
 			expander1.metric(label="", value=str(list_highTavg[0])+ "%", delta="-", delta_color="off")
 		with col2:
-			expander2 = st.expander("2nd Floor", expanded=False)
+			expander2 = st.expander("Middle Floor", expanded=False)
 			deltaT1 = list_highTavg[1] - list_highTavg[0]
 			deltaT1 = round(deltaT1,1)
 			if(deltaT1<0):
@@ -273,7 +273,7 @@ def trh_output():
 			else:
 				expander2.metric(label="", value=str(list_highTavg[1])+ "%", delta=deltaT1)
 		with col3:
-			expander3 = st.expander("3rd Floor", expanded=False)
+			expander3 = st.expander("Top Floor", expanded=False)
 			deltaT2 = list_highTavg[2] - list_highTavg[1]
 			deltaT2 = round(deltaT2,1)
 			if(deltaT2<0):	
@@ -289,7 +289,7 @@ def trh_output():
 			expander1 = st.expander("Ground Floor", expanded=False)
 			expander1.metric(label="", value=str(list_highRHavg[0])+ "%", delta="-", delta_color="off")
 		with col2:
-			expander2 = st.expander("2nd Floor", expanded=False)
+			expander2 = st.expander("Middle Floor", expanded=False)
 			deltaRH1 = list_highRHavg[1] - list_highRHavg[0]
 			deltaRH1 = round(deltaRH1,1)
 			if(deltaRH1<0):
@@ -297,7 +297,7 @@ def trh_output():
 			else:
 				expander2.metric(label="", value=str(list_highRHavg[1])+ "%", delta=deltaRH1)
 		with col3:
-			expander3 = st.expander("3rd Floor", expanded=False)
+			expander3 = st.expander("Top Floor", expanded=False)
 			deltaRH2 = list_highRHavg[2] - list_highRHavg[1]
 			deltaRH2 = round(deltaRH2,1)
 			if(deltaRH2<0):	
@@ -305,6 +305,16 @@ def trh_output():
 			else:
 				expander3.metric(label="", value=str(list_highRHavg[2])+ "%", delta=deltaRH2)
 
+
+
+
+
+
+
+
+
+
+	
 
 
 
