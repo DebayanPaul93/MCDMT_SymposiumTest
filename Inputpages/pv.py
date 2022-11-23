@@ -1,7 +1,7 @@
 #import packages
 import streamlit as st, time
 
-inputconfirm = False
+buttonclickconfirm = False
 
 #user input
 
@@ -62,15 +62,23 @@ def pv_input():
 	if(alloptionselection_check):
 		calbutton = st.button("Calculate", key='simlcalbutton')
 		if(calbutton):
+			global buttonclickconfirm 
+			buttonclickconfirm = calbutton
 			with st.spinner('Wait for the Results...'):
-				time.sleep(5)
-			st.success('Simulations Successfully Done!')
-			st.success('Results are being prepared for visualization...')
-			time.sleep(2) # Just to add a delay to show up visualization
+				time.sleep(3)
 
-		global inputconfirm 
-		inputconfirm = alloptionselection_check
 
+    
+
+
+
+
+
+   	
+   	
+   		
+
+   	
 
     
 
