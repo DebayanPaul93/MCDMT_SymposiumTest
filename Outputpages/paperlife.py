@@ -176,12 +176,12 @@ def paperlife_output():
             elif(no_of_zones == 2):
                 axes.plot(df_transposed_zone1.index, df_transposed_zone1['relative_lifetime'], color="green", linestyle='solid', label='')
                 axes.plot(df_transposed_zone2.index, df_transposed_zone2['relative_lifetime'], color="orange", linestyle='dashed', label='')
-                axes.legend(['Ground Floor', '$2^{nd}$ Floor',], fontsize=24, frameon=False)
+                axes.legend(['Ground Floor', 'Middle Floor',], fontsize=24, frameon=False)
             else:
                 axes.plot(df_transposed_zone1.index, df_transposed_zone1['relative_lifetime'], color="green", linestyle='solid', label='')
                 axes.plot(df_transposed_zone2.index, df_transposed_zone2['relative_lifetime'], color="orange", linestyle='dashed', label='')
                 axes.plot(df_transposed_zone3.index, df_transposed_zone3['relative_lifetime'], color="blue", linestyle='dotted', label='')
-                axes.legend(['Ground Floor', '$2^{nd}$ Floor', '$3^{rd}$ Floor'], fontsize=24, frameon=False)
+                axes.legend(['Ground Floor', 'Middle Floor', 'Top Floor'], fontsize=24, frameon=False)
             
             axes.grid(axis = 'y')
             axes.grid(axis = 'x')
@@ -241,7 +241,7 @@ def paperlife_output():
             expander1 = st.expander("Ground Floor", expanded=False)
             expander1.metric(label="", value=str(list_highTavg[0])+ "%")
         with col2:
-            expander2 = st.expander("2nd Floor", expanded=False)
+            expander2 = st.expander("Middle Floor", expanded=False)
             deltaY1 = list_t_avg[1] - list_t_avg[0]
             deltaY1 = round(deltaY1/list_t_avg[0] * 100, 1)
             if(deltaY1<0):
@@ -254,7 +254,7 @@ def paperlife_output():
             expander1 = st.expander("Ground Floor", expanded=False)
             expander1.metric(label="", value=str(list_t_avg[0]), delta="-", delta_color="off")
         with col2:
-            expander2 = st.expander("2nd Floor", expanded=False)
+            expander2 = st.expander("Middle Floor", expanded=False)
             deltaY1 = list_t_avg[1] - list_t_avg[0]
             deltaY1 = round(deltaY1/list_t_avg[0] * 100, 1)
             if(deltaY1<0):
@@ -262,7 +262,7 @@ def paperlife_output():
             else:
                 expander2.metric(label="", value=str(list_t_avg[1]), delta=str(deltaY1) +"%")
         with col3:
-            expander3 = st.expander("3rd Floor", expanded=False)
+            expander3 = st.expander("Top Floor", expanded=False)
             deltaY2 = list_t_avg[2] - list_t_avg[1]
             deltaY2 = round(deltaY2/list_t_avg[1] * 100, 1)
             if(deltaY2<0):  
