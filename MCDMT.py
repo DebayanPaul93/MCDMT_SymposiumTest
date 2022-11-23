@@ -1,6 +1,7 @@
 #import packages
 import streamlit as st, sys
 import pandas as pd
+import pytz
 from datetime import datetime
 from PIL import Image
 #import tkinter as tk
@@ -76,16 +77,17 @@ def input_home_page():
         date = st.date_input("Enter Date",value=datetime.today()) 
         date_report = date.strftime('%d %B, %Y') 
     with col6:
+        cet = pytz.timezone('Europe/Amsterdam')
         if (date_report == datetime.today().strftime('%d %B, %Y')): 
-            time = st.time_input("Enter Time", value= datetime.now(), disabled=True)      
-            time_report = time.strftime("%H:%M %p %Z")
+            time = st.time_input("Enter Time", value= datetime.now(tz=cet), disabled=True)      
+            time_report = time.strftime("%H:%M %p")
         else:
-            time = st.time_input("Enter Time", value= datetime.now(), disabled=False)      
-            time_report = time.strftime("%H:%M %p %Z")
+            time = st.time_input("Enter Time", value= datetime.now(tz=cet), disabled=False)      
+            time_report = time.strftime("%H:%M %p")
     with col7:
         email = st.text_input("Enter your e-mail id")
 
-    st.write("Report Date & Time: {} {}".format(date_report,time_report))
+    st.write("Report Date & Time: {} {} (Amsterdam Time)".format(date_report,time_report))
 #     st.markdown('#### Please select the Folder of Simulation Files in your System')
 #     # Directory picker
 #     root = tk.Tk()
