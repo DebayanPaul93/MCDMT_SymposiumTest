@@ -18,7 +18,6 @@ plt.rcParams['axes.linewidth'] = 3.0
 plt.rcParams['lines.linewidth'] = 4
 
 def energy_output():
-	st.markdown("### Energy Performance Result")
 	expander = st.expander("Building-level Energy Consumption", expanded=False)
 	expander.write("")
 
