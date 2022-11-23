@@ -143,7 +143,7 @@ def energy_output():
 	boliermonthlyimg = Image.open("BoilerMonthlyReport.jpg")
 
 	#read html file and convert it to dataframe object
-	coolingmonthlytable = pd.read_html(r'C:\Users\20210156\OneDrive - TU Eindhoven\Monthly\Streamlit Webapp_v2\eplustbl.htm',
+	coolingmonthlytable = pd.read_html('eplustbl.htm',
                match='COOLING COIL TOTAL COOLING ENERGY', header=0)[0]
 
 	coolingmonthlytable.set_index('Unnamed: 0', inplace=True)
