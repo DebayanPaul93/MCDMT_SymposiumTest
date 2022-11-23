@@ -8,6 +8,10 @@ import Outputpages.pvresults
 
 
 def resultmenu():
+	st.success('Simulations Successfully Done!')
+	st.success('Results are being prepared for visualization...')
+	time.sleep(2) # Just to add a delay to show up visualization
+
 	resultmenu = ['Conditioned Space T & RH','Utility Consumption','Collection Lifetime','PV Performance']           #added a blank selection field
 	resultchoice = st.sidebar.selectbox('Select Result Page',resultmenu)
 
