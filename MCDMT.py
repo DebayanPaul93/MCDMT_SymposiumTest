@@ -129,8 +129,8 @@ def hvac_page():
 def pv_page():
     Inputpages.pv.pv_input()
 
-alloptionselcheck = Inputpages.pv.inputconfirm
-if(alloptionselcheck):
+buttonclickcheck = Inputpages.pv.buttonclickconfirm
+if(buttonclickcheck):
     def result_page():
         Inputpages.result.resultmenu()
 
