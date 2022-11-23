@@ -1,4 +1,5 @@
 import streamlit as st,sys
+import calendar
 from pathlib import Path
 import lxml
 from PIL import Image
@@ -92,3 +93,104 @@ def energy_output():
 		st.dataframe(usevaluedf, width=400)
 	with col3:
 		st.write("")
+
+
+	expander1 = st.expander("Heating & Cooling Source Energy Consumption (Monthly Report)", expanded=False)
+	expander1.write("")
+
+	#read html file and convert it to dataframe object
+	boilermonthlytable = pd.read_html(r'eplustbl.htm',
+               match='BOILER HEATING ENERGY', header=0)[0]
+
+	boilermonthlytable.set_index('Unnamed: 0', inplace=True)
+
+	monthlist = list(calendar.month_name)[1:]
+	valueslist = []
+	for month in monthlist:
+	    valueslist.append(round(boilermonthlytable.loc[month]['BOILER HEATING ENERGY [kWh]'] / area,2))
+	    
+	boilermonthlyvaluedf = pd.DataFrame(valueslist,columns=['Boiler Monthly Consumption(kWh/m2)'],index=monthlist)
+	if (Path('BoilerMonthlyReport.jpg').is_file() is False):                
+		#End-Use Plot creater
+		monthlyboilerfig, axes = plt.subplots(figsize = (12,6))
+		n = 12
+		r = np.arange(n)
+		width = 0.25
+		plt.bar(r, boilermonthlyvaluedf['Boiler Monthly Consumption(kWh/m2)'], color = 'red', width = width, edgecolor = 'white')
+
+		plt.tick_params(
+		        axis='x',          # changes apply to the x-axis
+		        which='both',      # both major and minor ticks are affected
+		        bottom=False,      # ticks along the bottom edge are off
+		        top=False)         # ticks along the top edge are off
+
+
+		axes.spines['top'].set_visible(False)
+		axes.spines['right'].set_visible(False)
+
+		for tick in axes.yaxis.get_major_ticks():
+		      tick.label.set_fontsize(20)
+
+		for tick in axes.xaxis.get_major_ticks():
+		      tick.label.set_fontsize(20)
+
+
+		plt.xticks(r,['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'])
+		plt.ylabel('Monthly Boiler Consumption (kWh/$m^2$)', fontsize=15, labelpad=20)
+		plt.savefig('BoilerMonthlyReport.jpg', bbox_inches='tight', pad_inches=0.1)
+
+	#plot through streamlit
+	boliermonthlyimg = Image.open("BoilerMonthlyReport.jpg")
+
+	#read html file and convert it to dataframe object
+	coolingmonthlytable = pd.read_html(r'C:\Users\20210156\OneDrive - TU Eindhoven\Monthly\Streamlit Webapp_v2\eplustbl.htm',
+               match='COOLING COIL TOTAL COOLING ENERGY', header=0)[0]
+
+	coolingmonthlytable.set_index('Unnamed: 0', inplace=True)
+
+	valueslist = []
+	for month in monthlist:
+	    valueslist.append(round(coolingmonthlytable.loc[month]['COOLING COIL TOTAL COOLING ENERGY [kWh]'] / area,2))
+	    
+	coolingcoilmonthlyvaluedf = pd.DataFrame(valueslist,columns=['DX Coil Monthly Consumption(kWh/m2)'],index=monthlist)
+
+	if (Path('DXCoilMonthlyReport.jpg').is_file() is False):                
+		#End-Use Plot creater
+		monthlyDXCoilfig, axes = plt.subplots(figsize = (12,6))
+		n = 12
+		r = np.arange(n)
+		width = 0.25
+		plt.bar(r, coolingcoilmonthlyvaluedf['DX Coil Monthly Consumption(kWh/m2)'], color = 'blue', width = width, edgecolor = 'white')
+
+		plt.tick_params(
+		        axis='x',          # changes apply to the x-axis
+		        which='both',      # both major and minor ticks are affected
+		        bottom=False,      # ticks along the bottom edge are off
+		        top=False)         # ticks along the top edge are off
+
+
+		axes.spines['top'].set_visible(False)
+		axes.spines['right'].set_visible(False)
+
+		for tick in axes.yaxis.get_major_ticks():
+		      tick.label.set_fontsize(20)
+
+		for tick in axes.xaxis.get_major_ticks():
+		      tick.label.set_fontsize(20)
+
+
+		plt.xticks(r,['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'])
+		plt.ylabel('Monthly DX Coil Consumption (kWh/$m^2$)', fontsize=15, labelpad=20)
+		plt.savefig('DXCoilMonthlyReport.jpg', bbox_inches='tight', pad_inches=0.1)
+
+	#plot through streamlit
+	DXcoilmonthlyimg = Image.open("DXCoilMonthlyReport.jpg")
+
+	col_boiler, col_DX = st.columns(2)
+	
+	with col_boiler:
+		expander2 = st.expander("Electric Boiler", expanded=False)
+		expander2.image(boliermonthlyimg)
+	with col_DX:
+		expander3 = st.expander("Direct Expansion Coil", expanded=False)
+		expander3.image(DXcoilmonthlyimg)
