@@ -127,7 +127,7 @@ def trh_output():
 		plt.ylim(10,25)
 		plt.text(0.50, 0.16, 'Lower Temperature Limit',verticalalignment='bottom', horizontalalignment='right',transform=axes.transAxes, color='red', fontsize=25)
 		plt.text(0.25, 0.82, 'Upper Temperature Limit',verticalalignment='bottom', horizontalalignment='right',transform=axes.transAxes, color='red', fontsize=25)
-		plt.text(0.25, 0.50, 'Working Temperature Limit',verticalalignment='bottom', horizontalalignment='right',transform=axes.transAxes, color='green', fontsize=25)
+		plt.text(0.25, 0.50, 'Annual Average Temperature Setpoint',verticalalignment='bottom', horizontalalignment='right',transform=axes.transAxes, color='green', fontsize=25)
 		plt.axhline(y=13, color='r', linestyle='--')
 		plt.axhline(y=22, color='r', linestyle='--')
 		plt.axhline(y=18, color='green', linestyle='--')
@@ -183,9 +183,9 @@ def trh_output():
 		      tick.label.set_fontsize(20)
 		        
 		plt.ylim(30,70)
-		plt.text(0.44, 0.08, 'Lower RH Limit',verticalalignment='bottom', horizontalalignment='right',transform=axes1.transAxes, color='red', fontsize=25)
-		plt.text(0.25, 0.78, 'Upper RH Limit',verticalalignment='bottom', horizontalalignment='right',transform=axes1.transAxes, color='red', fontsize=25)
-		plt.text(0.65, 0.54, 'Working RH Limit',verticalalignment='bottom', horizontalalignment='right',transform=axes1.transAxes, color='green', fontsize=25)
+		plt.text(0.44, 0.08, 'Lower Relative Humidity Limit',verticalalignment='bottom', horizontalalignment='right',transform=axes1.transAxes, color='red', fontsize=25)
+		plt.text(0.25, 0.78, 'Upper Relative Humidity Limit',verticalalignment='bottom', horizontalalignment='right',transform=axes1.transAxes, color='red', fontsize=25)
+		plt.text(0.65, 0.54, 'Annual Average Relative Humidity Setpoint',verticalalignment='bottom', horizontalalignment='right',transform=axes1.transAxes, color='green', fontsize=25)
 		plt.axhline(y=35, color='r', linestyle='--')
 		plt.axhline(y=60, color='r', linestyle='--')
 		plt.axhline(y=50, color='green', linestyle='--')
@@ -305,16 +305,6 @@ def trh_output():
 			else:
 				expander3.metric(label="", value=str(list_highRHavg[2])+ "%", delta=deltaRH2)
 
-
-
-
-
-
-
-
-
-
-	
 
 
 
