@@ -17,7 +17,7 @@ def setpoint_input():
 	fluctype = st.radio("Select range type for fluctuation",('Very Small','Medium','Archival Limit with Safety Tolerance'),index=1,help='The fluctuation type indicates a probable range for how widely Temperature & Relative Humidity can fluctuate inside repository')
 
 	
-	if(fluctype=='Medium' or fluctype=='Archival Limit with Safety Tolerance'):
+	if(fluctype=='Archival Limit with Safety Tolerance'):
 		if(rel_humid!=55):
 			original_title = '<p style="font-family:Sans serif; color:Yellow; font-size: 20px;"><b>Seasonal Control</b></p>'
 			st.markdown(original_title, unsafe_allow_html=True)
