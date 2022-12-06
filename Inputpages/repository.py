@@ -18,7 +18,7 @@ def size_input():
 	else:
 		fillperctvalue = int(fillperct[-4:-2])
 
-	original_title = '<p style="font-family:Sans serif; color:Magenta; font-size: 30px;"><b>Repository Dimesnion</b></p>'
+	original_title = '<p style="font-family:Sans serif; color:Magenta; font-size: 30px;"><b>Repository Dimension</b></p>'
 	st.markdown(original_title, unsafe_allow_html=True)
 	col5, col6, col7 = st.columns(3)
 	with col5:
