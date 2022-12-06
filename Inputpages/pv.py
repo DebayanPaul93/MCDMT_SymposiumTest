@@ -27,23 +27,23 @@ def pv_input():
 		with col9:
 			panelname = st.selectbox("Select a panel from list of selected manufactures", southpanel_list, help='To simplify design a limited amount of pre-selected list of PV panels avaibale in market have been supplied')
 
-	if(panel_orientation == 'East-West'):
-		col9, col10= st.columns(2)
-		with col9:
-			panelname = st.selectbox("Select a panel from list of selected manufactures", ewpanel_list, help='To simplify design a limited amount of pre-selected list of PV panels avaibale in market have been supplied')
+# 	if(panel_orientation == 'East-West'):
+# 		col9, col10= st.columns(2)
+# 		with col9:
+# 			panelname = st.selectbox("Select a panel from list of selected manufactures", ewpanel_list, help='To simplify design a limited amount of pre-selected list of PV panels avaibale in market have been supplied')
 
-	advdatatselection_check = st.checkbox('Do you want to select electrical sizing of PV Systems?', help='User can customize the electrical sizing of the Photovoltaic Systems assembly or model will work with default values of such sizing')
-	if(advdatatselection_check):
-		col12, col14, col15= st.columns(3)
-		with col12:
-			dcacratio = st.number_input("Enter DC/AC Ratio",min_value=1.0,max_value=1.3,step=0.05,format="%.2f")
-		with col14:
-			inverternomeff = st.number_input("Enter Inverter Nominal Efficiency (%)",min_value=92,max_value=98,step=1)
+# 	advdatatselection_check = st.checkbox('Do you want to select electrical sizing of PV Systems?', help='User can customize the electrical sizing of the Photovoltaic Systems assembly or model will work with default values of such sizing')
+# 	if(advdatatselection_check):
+# 		col12, col14, col15= st.columns(3)
+# 		with col12:
+# 			dcacratio = st.number_input("Enter DC/AC Ratio",min_value=1.0,max_value=1.3,step=0.05,format="%.2f")
+# 		with col14:
+# 			inverternomeff = st.number_input("Enter Inverter Nominal Efficiency (%)",min_value=92,max_value=98,step=1)
 
 	
-	pdfreport_check = st.checkbox('Do you want to create a PDF Report of Performance Summary?')
-	for i in range(3):
-		st.write("")
+# 	pdfreport_check = st.checkbox('Do you want to create a PDF Report of Performance Summary?')
+# 	for i in range(3):
+# 		st.write("")
 
 	#Styling the Button
 	button_style = """
