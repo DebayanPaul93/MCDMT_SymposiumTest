@@ -53,60 +53,78 @@ import Inputpages.result
 ###Adding multiple input pages
 
 def input_home_page():
-    st.header("Welcome to Metamorforze Project!!")
-    st.markdown('<div style="text-align: justify;">The desire to design new sustainable archive buildings is shared by the Building Performance Group of Eindhoven University of Technology (TU/e) and the National Archives of the Netherlands (NA). It is being actively pursued in a design research project granted by Metamorfoze Onderzoek under the name “Klimaatmodel Archieven Fase 2”. In this project, researchers and design engineers from TU/e and conservators from NA work on the mutual aim to develop a user-friendly decision-support tool for stakeholders and policy enablers involved in the early design stages of archive buildings.</div>', unsafe_allow_html=True)
-    st.text("")
-    st.text("")
-    st.markdown('<div style="text-align: justify;">The design project commenced in March 2021 and is aimed to be completed by March 2023. Currently, we are at the stage of finding the appropriate inputs and outputs of the tool through performing simulations with the help and advice of several domain experts in the field. We are open to and appreciate any ideas and suggestions for improving the tool to make it as useful and user-friendly as possible. </div>', unsafe_allow_html=True)
-    st.text("")
-    st.text("")
-    dstimg = Image.open("DST.png")
+    col1, col2, col3, col4, col5 = st.columns(5)
+    with col5:
+        language = st.selectbox("Select Language/Selecteer de taal", ['English','Nederlands'])
+
+    if(language == 'English'):
+        st.header("Welcome to Metamorforze Research Project!!")
+        st.markdown('<div style="text-align: justify;">The desire to design new sustainable archive buildings is shared by the Building Performance Group of Eindhoven University of Technology (TU/e) and the National Archives of the Netherlands (NA). It is being actively pursued in a design research project granted by Metamorfoze Onderzoek under the name “Klimaatmodel Archieven Fase 2”. In this project, researchers and design engineers from TU/e and conservators from NA work on the mutual aim to develop a user-friendly decision-support tool for stakeholders and policy enablers involved in the early design stages of archive buildings.</div>', unsafe_allow_html=True)
+        st.text("")
+        st.text("")
+        st.markdown('<div style="text-align: justify;">The design project commenced in March 2021 and is aimed to be completed by March 2023. Currently, we are at the stage of finding the appropriate inputs and outputs of the tool through performing simulations with the help and advice of several domain experts in the field. We are open to and appreciate any ideas and suggestions for improving the tool to make it as useful and user-friendly as possible.</div>', unsafe_allow_html=True)
+        st.text("")
+        st.text("")
+        dstimg = Image.open("DST.png")
+
+    elif(language == 'Nederlands'):
+        st.header("Welkom bij Metamorforze Onderzoek Project!!")
+        st.markdown('<div style="text-align: justify;">De wens om nieuwe duurzame archiefgebouwen te ontwerpen wordt gedeeld door de Building Performance Group van de Technische Universiteit Eindhoven (TU/e) en het Nationaal Archief Nederland (NA). Dit wordt actief nagestreefd in een door Metamorfoze Onderzoek toegekend ontwerponderzoeksproject onder de naam "Klimaatmodel Archieven Fase 2". In dit project werken onderzoekers en ontwerpers van de TU/e en conservatoren van het NA aan het gezamenlijke doel om een gebruiksvriendelijke beslissingsondersteunende tool te ontwikkelen voor belanghebbenden en beleidsmakers die betrokken zijn bij de vroege ontwerpfasen van archiefgebouwen.</div>', unsafe_allow_html=True)
+        st.text("")
+        st.text("")
+        st.markdown('<div style="text-align: justify;">Het ontwerpproject ging in maart 2021 van start en zou in maart 2023 voltooid moeten zijn. Momenteel zijn wij bezig met het vinden van de juiste inputs en outputs van het instrument door simulaties uit te voeren met de hulp en het advies van verscheidene domeinexperts op dit gebied. Wij staan open voor en waarderen alle ideeën en suggesties voor het verbeteren van het instrument om het zo nuttig en gebruiksvriendelijk mogelijk te maken.</div>', unsafe_allow_html=True)
+        st.text("")
+        st.text("")
+        dstimg = Image.open("DST.png")
+
 
     col1, col2, col3 = st.columns(3)
     with col1:
         st.write("")
     with col2:
-        st.image(dstimg, caption='Infographics of the features of Decision Support Tool', width = None)            #Centering the image
+        if (language == 'English'):
+            st.image(dstimg, caption='Infographics of the features of Decision Support Tool', width = None)            #Centering the image
+        elif(language == 'Nederlands'):
+            st.image(dstimg, caption='Infografieken van de kenmerken van het beslissingsondersteunend instrument', width = None)            #Centering the image
     with col3:
         st.write("")
 
-    col4, col5, col6, col7 = st.columns(4)
+    col4, col5, col6 = st.columns(3)
     with col4:
-        name = st.text_input("Enter your Name")
+        if(language == 'English'):
+            name = ste.text_input("Enter your Name")
+        elif(language == 'Nederlands'):
+            name = ste.text_input("Voer uw naam in")
     with col5:
-        date = st.date_input("Enter Date",value=datetime.today()) 
+        if(language == 'English'):
+            date = ste.date_input("Enter Date",value=datetime.today())
+        elif(language == 'Nederlands'):
+            date = ste.date_input("Voer datum in",value=datetime.today())
         date_report = date.strftime('%d %B, %Y') 
     with col6:
         cet = pytz.timezone('Europe/Amsterdam')
         if (date_report == datetime.today().strftime('%d %B, %Y')): 
-            time = st.time_input("Enter Time", value= datetime.now(tz=cet), disabled=True)      
-            time_report = time.strftime("%H:%M %p")
+            if(language == 'English'):
+                time = ste.time_input("Enter Time", value= datetime.now(tz=cet), disabled=True) 
+            elif(language == 'Nederlands'):
+                time = ste.time_input("Voer tijd in", value= datetime.now(tz=cet), disabled=True)     
+            time_report = time.strftime("%I:%M %p")
         else:
-            time = st.time_input("Enter Time", value= datetime.now(tz=cet), disabled=False)      
-            time_report = time.strftime("%H:%M %p")
-    with col7:
-        email = st.text_input("Enter your e-mail id")
+            if(language == 'English'):
+                time = ste.time_input("Enter Time", value= datetime.now(tz=cet), disabled=False) 
+            elif(language == 'Nederlands'):
+                time = ste.time_input("Voer tijd in", value= datetime.now(tz=cet), disabled=False)     
+            time_report = time.strftime("%I:%M %p")
 
-    st.write("Report Date & Time: {} {} (Amsterdam Time)".format(date_report,time_report))
-#     st.markdown('#### Please select the Folder of Simulation Files in your System')
-#     # Directory picker
-#     root = tk.Tk()
-#     root.withdraw()
+    if(language == 'English'):
+        st.write("Report Date & Time: {} {} (Amsterdam Time)".format(date_report,time_report)+", created by "+name)
+    elif(language == 'Nederlands'):
+        st.write("Verslag Datum & Tijd: {} {} (Amsterdam Tijd)".format(date_report,time_report)+", gemaakt door "+name)  
 
-#     # Make folder picker dialog appear on top of other windows
-#     root.wm_attributes('-topmost', 1)
-
-#     # Folder picker button
-#     source_folderlocation_string, modified_folderlocation_string = "",""
-
-#     clicked = st.button('Select Folder')
-#     if clicked:
-#         source_folderlocation_string = filedialog.askdirectory(master=root)                               #for reading folder from user system
-#         if(source_folderlocation_string != ""):
-#             st.text_input('You Selected Folder:', source_folderlocation_string)
-#             modified_folderlocation_string = source_folderlocation_string.replace("/", "\\") 
-#         else:
-#             st.error("Please Select the Folder") 
+    if 'reporttime' or 'reportdate' or 'name' not in st.session_state:
+        st.session_state.reporttime = time_report
+        st.session_state.reportdate = date_report
+        st.session_state.name = name
 
                                             
 
