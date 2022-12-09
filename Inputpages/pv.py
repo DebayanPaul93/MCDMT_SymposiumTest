@@ -8,7 +8,7 @@ buttonclickconfirm = False
 def pv_input():
 	southpanel_list=['Beaut Solar (36 Cells)','Solarge (72 Cells)','MHI (120 Cells)']
 	ewpanel_list=['Solarge Duo(72 Cells)']
-	original_title = '<p style="font-family:Sans serif; color:chartreuse; font-size: 30px;"><b>System Information of Rooftop Photovoltaic Panels</b></p>'
+	original_title = '<p style="font-family:Sans serif; color:White; font-size: 30px;"><b>System Information of Rooftop Photovoltaic Panels</b></p>'
 	st.markdown(original_title, unsafe_allow_html=True)
 	panel_orientation = st.radio("Orientation of Panels",('South','East-West'), help='An option for user to select from most two common structural orientations for rooftop Photovoltaic Systems')
 	col1, col2 = st.columns(2)
