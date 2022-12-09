@@ -9,7 +9,7 @@ import Inputpages.weather
 def hvac_input():
 	heatingsource_list = ['Electric Boiler','Geothermal Heat Pump']
 	coolingsource_list = ['Direct Expansion Coil','Geothermal Heat Pump','Water-Cooled Chiller']
-	original_title = '<p style="font-family:Sans serif; color:darkorange; font-size: 30px;"><b>HVAC System Selection</b></p>'
+	original_title = '<p style="font-family:Sans serif; color:White; font-size: 30px;"><b>HVAC System Selection</b></p>'
 	st.markdown(original_title, unsafe_allow_html=True)
 	hvacselection_check = st.checkbox('Do you want to select a HVAC System?',help='This checkbox allows user to set sources for heating/cooling from a list of pre-selected options. Otherwise, the model automatically selects them')
 	if(hvacselection_check):
@@ -27,7 +27,7 @@ def hvac_input():
 
 	fanselection_check = st.checkbox('Do you want to add filters for particulate matter?', help = 'An additional option for user to enable increased pressure drops in Air Handling Unit due to particualte filters instalaltion')
 
-	original_title = '<p style="font-family:Sans serif; color:darkorange; font-size: 30px;"><b>HVAC System Sizing</b></p>'
+	original_title = '<p style="font-family:Sans serif; color:White; font-size: 30px;"><b>HVAC System Sizing</b></p>'
 	st.markdown(original_title, unsafe_allow_html=True)
 
 	
