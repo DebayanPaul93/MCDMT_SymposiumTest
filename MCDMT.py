@@ -10,7 +10,7 @@ from PIL import Image
 
 
 #Remove Watermark & Styling
-st.set_page_config(page_title='Multi-criteria Decision Support Tool')
+st.set_page_config(page_title='Multi-criteria Decision Support Tool',layout="wide")
 hide_st_style = """
             <style>
             footer {visibility: hidden;}
