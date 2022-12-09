@@ -10,7 +10,7 @@ def weather_input():
 
 	location = st.radio("Select a location",('Netherlands','Netherlands Antilles'),help='Physical Location of the archive')
 	if(location == 'Netherlands'):
-		original_title = '<p style="font-family:Sans serif; color:Red; font-size: 30px;"><b>Weather Scenario</b></p>'
+		original_title = '<p style="font-family:Sans serif; color:White; font-size: 30px;"><b>Weather Scenario</b></p>'
 		st.markdown(original_title, unsafe_allow_html=True)
 		col1, col2, col3 = st.columns(3)
 		with col1:
