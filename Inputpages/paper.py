@@ -5,7 +5,7 @@ import streamlit_ext as ste
 
 def paper_input():
 	list_pH,list_intdp=[],[]
-	original_title = '<p style="font-family:Sans serif; color:White; font-size: 30px;"><b>Number of Collection Objects</b></p>'
+	original_title = '<p style="font-family:Sans serif; color:White; font-size: 30px;"><b>Collection Objects Details</b></p>'
 	st.markdown(original_title, unsafe_allow_html=True)
 	col1, col2, col3, col4 = st.columns(4)
 	with col1:
