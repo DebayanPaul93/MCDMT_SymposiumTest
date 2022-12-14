@@ -1,50 +1,74 @@
-import streamlit as st
-from streamlit.components.v1 import html
-
-
-#Improt weather file for one test
-import Inputpages.weather
+import streamlit as st,pandas as pd,os, math
+import streamlit_ext as ste
 
 #user input
-def hvac_input():
-	heatingsource_list = ['Electric Boiler','Geothermal Heat Pump']
-	coolingsource_list = ['Direct Expansion Coil','Geothermal Heat Pump','Water-Cooled Chiller']
-	original_title = '<p style="font-family:Sans serif; color:White; font-size: 30px;"><b>HVAC System Selection</b></p>'
+
+def paper_input():
+	list_pH,list_intdp=[],[]
+	original_title = '<p style="font-family:Sans serif; color:White; font-size: 30px;"><b>Collection Objects Details</b></p>'
 	st.markdown(original_title, unsafe_allow_html=True)
-	hvacselection_check = st.checkbox('Do you want to select a HVAC System?',help='This checkbox allows user to set sources for heating/cooling from a list of pre-selected options. Otherwise, the model automatically selects them')
-	if(hvacselection_check):
-		col1, col2 =st.columns(2)
-		with col1:
-			heatingsource = st.selectbox("Select a Heating Source", heatingsource_list)
-		with col2:
-			coolingsource = st.selectbox("Select a Cooling Source", coolingsource_list)
+	col1, col2, col3, col4 = st.columns(4)
+	with col1:
+		objectno = ste.number_input("Enter number of type of objects",1,4,key='noofobjecttype')
+	for counter in range (objectno):
+		if(objectno>1):
+			st.markdown("#### Type {} Object Chemical Properties".format(counter+1))
+			colc, cold = st.columns(2)
+			with colc:
+				pH = ste.slider("Select pH level",min_value=3,max_value=9,value=8,step=1,key='ph{}'.format(counter+2))
+			with cold:
+				int_dp = ste.slider("Select Initial DP",min_value=500,max_value=2500,value=1200,step=50,key='dp{}'.format(counter+2))
 
-	mechventselection_check = st.checkbox('Do you want to modify mechanical ventilation rate?', help= 'This checkbox allows user to define additional fresh air change rate per hour through a dedicated mechanical ventilation system. otherwise, the model runs on a very limited amount of mechanical ventilation as per archival guidelines')
-	if(mechventselection_check):
-		col3, col4 = st.columns(2)
-		with col3:
-			mechventrate = st.number_input("Enter Mechanical Ventilation Rate (ACH)",min_value=0.2,max_value=2.0,step=0.2,format="%.1f")
+			if isinstance(pH, tuple):
+				pH = pH[0]
+			if isinstance(int_dp, tuple):
+				int_dp = int_dp[0]
 
-	fanselection_check = st.checkbox('Do you want to add filters for particulate matter?', help = 'An additional option for user to enable increased pressure drops in Air Handling Unit due to particualte filters instalaltion')
+			list_pH.append(pH)
+			list_intdp.append(int_dp)
 
-	original_title = '<p style="font-family:Sans serif; color:White; font-size: 30px;"><b>HVAC System Sizing</b></p>'
+		else:
+			st.markdown("#### Object Chemical Properties")
+			cola, colb = st.columns(2)
+			with cola:
+				pH = ste.slider("Select pH level",min_value=3,max_value=9,value=8,step=1,key='ph1')
+			with colb:
+				int_dp = ste.slider("Select Initial DP",min_value=500,max_value=2500,value=1200,step=50,key='dp1')
+
+			if isinstance(pH, tuple):
+				pH = pH[0]
+			if isinstance(int_dp, tuple):
+				int_dp = int_dp[0]
+
+			list_pH.append(pH)
+			list_intdp.append(int_dp)
+
+	original_title = '<p style="font-family:Sans serif; color:White; font-size: 30px;"><b>Critical DP of Collection</b></p>'
 	st.markdown(original_title, unsafe_allow_html=True)
+	col10, col11, col12 = st.columns(3)
+	with col10:
+		crit_dp = ste.slider("Select Critical DP",min_value=200,max_value=400,step=50,key='critdp')
+		if isinstance(crit_dp, tuple):
+			crit_dp = crit_dp[0]
 
-	
-	refweatheryear = Inputpages.weather.refweatheryear    #return the scenario variable from weather page
-	counter = 1 # Define a counter variable for scenario condition test (Intentionally Set it 1 for the IPCC cases)
-
-	if(refweatheryear == 2018):
-		counter = 0                 #Set it 0 when it's not IPCC Case
-		if(counter == 0):
-			sizingoption = st.radio("Select sizing method",('Adequately Sized','Sized for Climate Adversity','Manual Sizing'), help ='An advanced option for user to set adequate or increaseed/limited sizing capacity of heating & cooling source')
-	if(counter!=0):
-		sizingoption = st.radio("Select sizing method",('Adequately Sized','Manual Sizing'), help ='An advanced option for user to set adequate or limited sizing capacity of heating & cooling source')
+	for i in range(3):
+		st.write("")
+	save = st.checkbox('Save Inputs (*)', value=False, key='papersave')
 
 
-	if(sizingoption == 'Manual Sizing'):
-		col7, col8 = st.columns(2)
-		with col7:
-			heatingsourcesize = st.number_input("Enter Minimum % Hours of Met Heating Load",min_value=50,max_value=95,step=5)
-		with col8:
-			coolingsourcesize = st.number_input("Enter Minimum % Hours of Met Cooling Load",min_value=50,max_value=95,step=5)
+	if save:
+		valuelist = [objectno,list_pH,list_intdp,crit_dp]
+		columnlist = ['Number of object types', 'List of pH Values', 'List of Initial DP Values', 'Critical DP']
+
+
+		#Current working directory
+		cwd = os.getcwd()
+		#set path to subdirectory and inputfilename
+		inputfilesnamewithpath = cwd+'\\Inputfiles\\PaperUserInputs.csv'
+
+		#Write the inputs to a csv file
+		inputdf = pd.DataFrame([valuelist], columns = columnlist)
+
+		inputdf.to_csv(inputfilesnamewithpath, index=False)
+
+
