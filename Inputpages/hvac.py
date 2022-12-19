@@ -1,5 +1,6 @@
-import streamlit as st
-from streamlit.components.v1 import html
+import streamlit as st,pandas as pd,os, math
+import streamlit_ext as ste
+
 
 #user input
 def hvac_input():
@@ -7,10 +8,12 @@ def hvac_input():
 	coolingsource_list = ['Direct Expansion Coil','Geothermal Heat Pump','Water-Cooled Chiller']
 	original_title = '<p style="font-family:Sans serif; font-size: 30px;"><b>HVAC System Selection</b></p>'
 	st.markdown(original_title, unsafe_allow_html=True)
+
+
 	hvacselection_check = ste.checkbox('Do you want to select a HVAC System?',help='This checkbox allows user to set sources for heating/cooling from a list of pre-selected options. Otherwise, the model automatically selects them', key='hvacselectioncheck')
 
 	if(hvacselection_check):
-		col1, col2 =st.columns(2)
+		col1, col2 = st.columns(2)
 		with col1:
 			heatingsource = ste.selectbox("Select a Heating Source", heatingsource_list, key='heatsourcelist')
 		with col2:
@@ -37,4 +40,6 @@ def hvac_input():
 			heatingsourcesize = ste.number_input("Enter Minimum % Hours of Met Heating Load",min_value=50,max_value=95,step=5, key='customheatsize')
 		with col8:
 			coolingsourcesize = ste.number_input("Enter Minimum % Hours of Met Cooling Load",min_value=50,max_value=95,step=5, key='customcoolsize')
+
+
 
